@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22155" systemVersion="23B74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Cat" representedClassName="Cat" syncable="YES" codeGenerationType="class">
+        <attribute name="age" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="breed" optional="YES" attributeType="String"/>
+        <attribute name="imageName" optional="YES" attributeType="String"/>
+        <attribute name="isIndoor" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isNeutered" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="microchipNumber" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Document" inverseName="cat" inverseEntity="Document"/>
+        <relationship name="healthEvents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HealthEvent" inverseName="cat" inverseEntity="HealthEvent"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="cat" inverseEntity="Photo"/>
+    </entity>
+    <entity name="Document" representedClassName="Document" syncable="YES" codeGenerationType="class">
+        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fileName" optional="YES" attributeType="String"/>
+        <attribute name="fileType" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="cat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cat" inverseName="documents" inverseEntity="Cat"/>
+    </entity>
+    <entity name="HealthEvent" representedClassName="HealthEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="eventDescription" optional="YES" attributeType="String"/>
+        <attribute name="eventType" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="cat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cat" inverseName="healthEvents" inverseEntity="Cat"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
+        <attribute name="aiAnalysis" optional="YES" attributeType="String"/>
+        <attribute name="cuteScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="imageName" optional="YES" attributeType="String"/>
+        <attribute name="wellnessNote" optional="YES" attributeType="String"/>
+        <relationship name="cat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cat" inverseName="photos" inverseEntity="Cat"/>
+    </entity>
+</model>
